@@ -1,6 +1,6 @@
 var worker = new Worker(window.URL.createObjectURL(blob));
 
-worker.onmessage = (ev: MessageEvent<string>) => {
+worker.onmessage = (ev) => {
   console.log('hi', ev);
 };
 
