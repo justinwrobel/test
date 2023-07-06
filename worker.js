@@ -1,11 +1,14 @@
-onmessage = function(e) {
-	console.log('Worker: Message received from main script');
-	const result = e.data[0] * e.data[1];
-	if (isNaN(result)) {
-		postMessage('Please write two numbers');
-	} else {
-		const workerResult = 'Result: ' + result;
-		console.log('Worker: Posting message back to main script');
-		postMessage(workerResult);
-	}
+onmessage = (e) => {
+      let sum = 0;
+
+      //self.postMessage(['qqq-wwww', e.data]);
+
+      // Freeze in 3 seconds for 3 seconds
+      setTimeout(() => {
+        var now = new Date().getTime();
+        while (new Date().getTime() < now + 3000) {
+          sum += Math.floor(Math.random() * 6) + 1;
+        }
+        self.postMessage('wwww');
+      }, 3000);
 }
