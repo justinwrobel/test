@@ -1,4 +1,4 @@
-var worker = new Worker(window.URL.createObjectURL(blob));
+var worker = new Worker("worker.js");
 
 worker.onmessage = (ev) => {
   console.log('hi', ev);
