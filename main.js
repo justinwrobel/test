@@ -1,25 +1,8 @@
-const first = document.querySelector('#number1');
-const second = document.querySelector('#number2');
+var worker = new Worker(window.URL.createObjectURL(blob));
 
-const result = document.querySelector('.result');
+worker.onmessage = (ev: MessageEvent<string>) => {
+  console.log('hi', ev);
+};
 
-if (window.Worker) {
-  const myWorker = new Worker("worker.js");
-
-  first.onchange = function() {
-    myWorker.postMessage([first.value, second.value]);
-    console.log('Message posted to worker');
-  }
-
-  second.onchange = function() {
-    myWorker.postMessage([first.value, second.value]);
-    console.log('Message posted to worker');
-  }
-
-  myWorker.onmessage = function(e) {
-    result.textContent = e.data;
-    console.log('Message received from worker');
-  }
-} else {
-  console.log('Your browser doesn\'t support web workers.');
-}
+// Update the count every second (this shows the freeze)
+setInterval(() => worker.postMessage({}), 1000);
